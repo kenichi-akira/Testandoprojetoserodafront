@@ -8,7 +8,7 @@ import { Button } from "../Button";
 import heart from "../../assets/heart.svg";
 import heartFill from "../../assets/heart-fill.svg";
 import { useAuth } from "../../hooks/auth";
-import { useFavorite } from "../../hooks/favorite";
+import { useFavorite } from "../../hooks/favorites";
 import { api } from "../../services/api";
 import { useCart } from "../../hooks/cart";
 
