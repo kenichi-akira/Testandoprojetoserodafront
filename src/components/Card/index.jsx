@@ -8,7 +8,7 @@ import { Button } from "../Button";
 import heart from "../../assets/heart.svg";
 import heartFill from "../../assets/heart-fill.svg";
 import { useAuth } from "../../hooks/auth";
-import { useFavorite } from "../../hooks/favorites";
+import { useFavorites } from "../../hooks/favorites";
 import { api } from "../../services/api";
 import { useCart } from "../../hooks/cart";
 
@@ -19,7 +19,7 @@ export function Card({ data, ...rest }) {
 
   const { user } = useAuth();
   const { favorites, addDishToFavorite, removeDishFromFavorite } =
-    useFavorite();
+    useFavorites();
   const { handleAddDishToCart, paymentAccept } = useCart();
 
   const isFavorite = favorites.some((dish) => dish.title === data.title);
