@@ -52,7 +52,8 @@ export const Content = styled.div`
     border: 1px solid ${({ theme }) => theme.COLORS.GRAY_200};
     border-radius: 0 0 0.8rem 0.8rem;
     margin: 0 auto;
-        
+    
+    
     .paymentCredit,
     .paymentPix {
         text-align: center;
@@ -65,14 +66,15 @@ export const Content = styled.div`
         margin: 3.7rem 0;
         justify-content: center;
     
-        div {
-            flex: 1; // Distribui o espaço uniformemente
-            max-width: 10rem; // Defina a largura máxima conforme necessário
+        // Configuração de largura para cada div interna (Validade e CVC)
+        div:first-child {
+            flex: 1;
+            max-width: 10rem; // Largura para o campo "Validade"
         }
     
-        // Estilo específico para o campo CVC
         div:last-child {
-            max-width: 8rem; // Largura um pouco menor para o CVC, ajustando conforme necessário
+            flex: 1;
+            max-width: 8rem; // Largura ligeiramente menor para o campo "CVC"
         }
     }
 
@@ -92,7 +94,7 @@ export const Content = styled.div`
         margin-bottom: 2rem;
     }
 
-    /* ==== Tela Pós Pagamento ==== */
+    
     .clock,
     .approved,
     .delivered,
