@@ -52,9 +52,7 @@ export const Content = styled.div`
     border: 1px solid ${({ theme }) => theme.COLORS.GRAY_200};
     border-radius: 0 0 0.8rem 0.8rem;
     margin: 0 auto;
-    
-    /* ==== Tela do Cartão de Crédito ==== */
-    
+        
     .paymentCredit,
     .paymentPix {
         text-align: center;
@@ -65,7 +63,17 @@ export const Content = styled.div`
         display: flex;
         gap: 1.7rem;
         margin: 3.7rem 0;
-        justify-content: center; // Alinha os campos "Validade" e "CVC" horizontalmente
+        justify-content: center;
+    
+        div {
+            flex: 1; // Distribui o espaço uniformemente
+            max-width: 10rem; // Defina a largura máxima conforme necessário
+        }
+    
+        // Estilo específico para o campo CVC
+        div:last-child {
+            max-width: 8rem; // Largura um pouco menor para o CVC, ajustando conforme necessário
+        }
     }
 
     .paymentPix img {
@@ -102,7 +110,6 @@ export const Content = styled.div`
         margin-top: 3rem;
     }
 
-    /* ==== HIDE ==== */
     .hide {
         display: none;
     }
