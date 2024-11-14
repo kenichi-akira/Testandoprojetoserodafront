@@ -59,7 +59,7 @@ export const Container = styled.div`
 
   > strong {
     font-size: 3.2rem;
-    color: ${({ theme }) => theme.COLORS.LIGHT_GREEN};
+    color: ${({ theme }) => theme.COLORS.BLUE};
     margin-block: 1.6rem;
   }
 
