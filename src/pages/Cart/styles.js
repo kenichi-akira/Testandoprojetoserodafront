@@ -127,7 +127,6 @@ export const PaymentCard = styled.div`
     }
 
     .paymentBody {
-        /* ==== General card settings ==== */
 
         width: 100%;
         max-width: 53.0rem;
@@ -143,8 +142,8 @@ export const PaymentCard = styled.div`
         align-items: center;
         align-content: center;
         
-        /* ==== CreditCard Screen ==== */
-        .validTo {
+
+	.validTo {
             display: flex;
             gap: 1.7rem;
             margin: 3.7rem 0 3.7rem;
@@ -154,8 +153,8 @@ export const PaymentCard = styled.div`
             margin-bottom: 0.8rem;
         }
 
-        /* ==== QR Code Screen ==== */
-        .paymentPix {
+
+	.paymentPix {
             text-align: center;
         }
 
@@ -170,8 +169,8 @@ export const PaymentCard = styled.div`
             margin-bottom: 2rem;
         }
 
-        /* ==== Post Payment Screen ==== */
-        .clock,
+
+	.clock,
         .approved,
         .cart {
             width: 100%;
@@ -187,7 +186,7 @@ export const PaymentCard = styled.div`
         }
     }
 
-    /* ==== Smooth Transitions ==== */
+
     .cart,
     .clock,
     .approved,
