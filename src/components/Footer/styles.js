@@ -1,39 +1,48 @@
 import styled from "styled-components";
 
 export const Container = styled.footer`
-  width: 100%;
-  height: 12.4rem;
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
-  margin-top: 10rem;
-`
+    width: 100%;
+    height: 7.7rem;
+    
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
+    align-items: center;
+`;
 
 export const Content = styled.div`
-  height: 100%;
-  max-width: 136.8rem;
-  margin-inline: auto;
-  padding-inline: 4rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  > div {
-    display: flex;
-    align-items: center;
-    gap: 1.1rem;
-    img {
-      opacity: .3;
-    }
-    span {
-      font-size: 2.4rem;
-      opacity: .3;
-    }
-  }
-  > p {
-    font-size: 1.4rem;
-    color: ${({ theme }) => theme.COLORS.GRAY_200};
-  }
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-  @media (min-width: 768px) {
-    padding-inline: 12.3rem
-  }
-`
+        max-width: 121.2rem;
+        padding: 0 4rem;
+        margin: auto;
+
+        color: ${({ theme }) => theme.COLORS.GRAY_300};
+
+        > p {
+            font-size: 1.4rem;
+            font-family: 'DM Sans', sans-serif;
+            text-align: right;
+        }
+`;
+
+export const Logo = styled.div`
+    .logo {
+        display: flex;
+        
+        height: 7.7rem;
+        gap: 1.123rem;
+
+        align-items: center;
+        white-space: nowrap;
+
+        color: ${({ theme }) => theme.COLORS.GRAY_300};
+    }
+
+    span {
+        font-family: 'Roboto', sans-serif;
+        font-size: 2.51109rem;
+        font-weight: 700;
+        flex-wrap: wrap;
+    }
+`;
