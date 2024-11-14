@@ -1,94 +1,131 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FiSearch, FiLogOut, FiMenu, FiX } from "react-icons/fi";
+import { Container, Content, Logo, Search, Logout, Button, ButtonMenu, Profile } from "./styles";
+import { useAuth } from '../../hooks/auth';
+
+import { Link } from "react-router-dom";
+
+import { FiSearch, FiLogOut, FiUser, FiShoppingBag, FiHeart } from 'react-icons/fi';
+import { BsReceipt } from 'react-icons/bs';
+
+import receipt from "../../assets/receipt.svg";
 
 import logo from "../../assets/logo.svg";
-import receipt from "../../assets/receipt.svg";
-import { useAuth } from "../../hooks/auth";
-import { useCart } from "../../hooks/cart";
 
-import {
-  Container,
-  Content,
-  Logo,
-  Nav,
-  Favorites,
-  NewDish,
-  Search,
-  Button,
-  Logout,
-} from "./styles";
+import { useCart } from '../../hooks/cart';
 
-export function Header({ search, functionButton }) {
-  const [menuIsVisible, setMenuIsVisible] = useState(false);
+export function Header({search, favoritesFilter}) {
+    const { user } = useAuth()
+    const { signOut } = useAuth();
 
-  const { user, signOut } = useAuth();
-  const { cart, orders } = useCart();
-  const navigate = useNavigate();
+    const { cart, orders } = useCart();
+    
+    function mobileMenu() {
+        document.getElementById('hamburger').classList.toggle('active')
+        document.getElementById('nav-menu').classList.toggle('active')
+    }
 
-  const isCartIsEmpty = cart.length === 0;
+    function userMenu() {
+        document.getElementById('user-menu').classList.toggle('active')
+    }
 
-  function handleGoToCart() {
-    navigate("/cart");
-  }
+    return (
+        <Container>
+            <Content>
+                <Logo>
+                    <div className="logo">
+                        <Link to="/">
+                            <img src={logo} alt="polígono azul" />
+                            <h1>Food Explorer</h1>
+                        </Link>
+                    </div>
+                </Logo>
 
-  function handleGoToOrders() {
-    navigate("/orders");
-  }
+                <div className="hamburger" id="hamburger" onClick={mobileMenu}>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                </div>
 
-  return (
-    <Container>
-      <Content>
-        <Logo to="/">
-          <img src={logo} alt="polígono azul" />
-          <strong>food explorer</strong>
-        </Logo>
+                <div className="nav-menu" id="nav-menu">
 
-        <Nav isVisible={menuIsVisible}>
-          {user.isAdmin ? (
-            <NewDish to="/new">+ Adicionar novo prato</NewDish>
-          ) : (
-            <Favorites type="button" onClick={functionButton}>
-              Meus favoritos
-            </Favorites>
-          )}
+                    <Search>
+                        <label>
+                            <FiSearch size={24}/>
+                            <input 
+                                type="text" 
+                                placeholder="Busque pelas opções de pratos"
+                                onChange={e => {search(e.target.value)}}
+                            />
+                        </label>
+                    </Search>
 
-          <Search>
-            {<FiSearch size={20} />}
-            <input
-              type="text"
-              placeholder="Busque pelas opções de pratos"
-              onChange={(e) => {
-                search(e.target.value);
-              }}
-            />
-          </Search>
+                    {
+                        user.isAdmin ?
 
-          {user.isAdmin ? (
-            <Button type="button" onClick={handleGoToOrders}>
-              <img src={receipt} alt="receipt" />
-              pedidos<span>({orders.length})</span>
-            </Button>
-          ) : (
-            <Button
-              type="button"
-              onClick={handleGoToCart}
-              disabled={isCartIsEmpty}
-            >
-              <img src={receipt} alt="receipt" />
-              Meu pedido <span>({cart.length})</span>
-            </Button>
-          )}
+                            <Link to="/orders">
+                                <Button
+                                    type='button'
+                                >
+                                    <BsReceipt size={24}/>
+                                    Ver pedidos <span>({orders.length})</span>
+                                </Button>
+                            </Link>
 
-          <Logout to="/" onClick={signOut}>
-            <FiLogOut />
-          </Logout>
-        </Nav>
+                    :
 
-        <button type="button" onClick={() => setMenuIsVisible(!menuIsVisible)}>
-          {menuIsVisible ? <FiX /> : <FiMenu />}
-        </button>
-      </Content>
-    </Container>
-  );
+                            <Link to="/cart">
+                                <Button
+                                    type='button'
+                                >
+                                    <img src={receipt} alt="receipt" />
+                                    Pedido <span>({cart.length})</span>
+                                </Button>
+                            </Link>
+                    }
+
+                    {
+                        user.isAdmin ?
+
+                            <Link to="/profile">
+                                <Profile>
+                                    <FiUser />
+                                </Profile>
+                            </Link>
+
+                    :
+
+                    <Profile onClick={userMenu}>
+                        <FiUser />
+                        <div className="user-menu" id="user-menu">
+                                <Link to="/orders">
+                                    <ButtonMenu>
+                                        <FiShoppingBag size={24}/>
+                                        Meus Pedidos
+                                    </ButtonMenu>
+                                </Link>
+
+                                <Link to="/">
+                                    <ButtonMenu onClick={favoritesFilter}>
+                                        <FiHeart size={24}/>
+                                        Meus Favoritos
+                                    </ButtonMenu>
+                                </Link>
+                                
+                                <Link to="/profile">
+                                    <ButtonMenu>
+                                        <FiUser size={24}/>
+                                        Meu Perfil
+                                    </ButtonMenu>
+                                </Link>
+                        </div>
+                    </Profile>
+                    }
+
+                    <Logout to="/" onClick={signOut}>
+                        <FiLogOut />
+                    </Logout>
+                </div>
+
+            </Content>
+        </Container>
+    );
 }
