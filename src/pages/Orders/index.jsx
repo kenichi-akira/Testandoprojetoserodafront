@@ -90,7 +90,7 @@ export function Orders() {
                                             <tr>
                                                 <td colSpan="4">
                                                     <div className="zeroOrders">
-                                                        <p>Não existem pedidos cadastrados ainda! =/</p>
+                                                        <p>Não existem pedidos cadastrados!</p>
                                                     </div>
                                                 </td>
                                             </tr>
