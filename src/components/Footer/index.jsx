@@ -1,17 +1,23 @@
+import { Container, Content, Logo } from "./styles";
+import logo_gray from '../../assets/logo_gray.svg'
 import logoFooter from '../../assets/logo-footer.svg';
 
-import { Container, Content } from './styles';
-
 export function Footer() {
-  return (
-    <Container>
-      <Content>
-        <div>
-          <img src={logoFooter} alt="Logo" />
-          <span>food explorer</span>
-        </div>
-        <p>© 2022 - Todos os direitos reservados.</p>
-      </Content>
-    </Container>
-  )
+    return (
+        <Container>
+            <Content>
+                <Logo>
+                    <div className="logo">    
+                        <img src={logoFooter} alt="Logo" />
+                        <span>Food Explorer</span>
+                    </div>
+                </Logo>
+
+                <p>
+                    © 2024 - Todos os direitos reservados.
+                </p>
+
+            </Content>
+        </Container>
+    );
 }
