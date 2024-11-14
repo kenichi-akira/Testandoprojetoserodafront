@@ -77,7 +77,7 @@ export function Header({search, favoritesFilter}) {
                                     type='button'
                                 >
                                     <img src={receipt} alt="receipt" />
-                                    Pedido <span>({cart.length})</span>
+                                    Pedidos <span>({cart.length})</span>
                                 </Button>
                             </Link>
                     }
