@@ -33,7 +33,7 @@ export function PageError(){
                 <div>
                     <h2>Error 401</h2>
                     <span>Oops!</span>
-                    <h3>Você não possuí autorização para acessar esta página!</h3>
+                    <h3>Volte! Você não possuí permissão para acessar esta página!</h3>
                 </div>
             </div>
         </Container>
