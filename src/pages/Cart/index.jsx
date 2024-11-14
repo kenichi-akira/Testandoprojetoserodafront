@@ -1,7 +1,5 @@
-// Styling Imports
 import { Container, Content, PaymentCard } from "./styles.js";
 
-// Theme Swap Imports
 import { ThemeProvider } from 'styled-components';
 import { ThemeSlider} from "../../components/ThemeSlider";
 import { useDarkMode } from '../../styles/useDarkMode';
@@ -9,7 +7,6 @@ import GlobalStyles from '../../styles/global'
 import lightTheme from '../../styles/lightTheme';
 import darkTheme from '../../styles/theme';
 
-// Components Imports
 import { Header } from "../../components/Header";
 import { Footer } from "../../components/Footer";
 import { OrderCard } from "../../components/OrderCard";
@@ -17,14 +14,12 @@ import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import { PageError } from "../../components/PageError";
 
-// Strategic Imports (API and others)
 import { api } from "../../services/api";
 import { useAuth } from "../../hooks/auth";
 import { useCart } from '../../hooks/cart';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-// Image Imports
 import { BsReceipt } from 'react-icons/bs';
 import logoPix from '../../assets/pix.svg';
 import cardImg from '../../assets/CreditCard.svg';
@@ -61,7 +56,6 @@ export function Cart() {
         }
     }
 
-    // Payment Finalization Function
     async function handleFinishPayment(cart) {
             
         const newCart = handleCreatedCart(cart)
@@ -90,7 +84,7 @@ export function Cart() {
             .then(() => {
                 disableButton();
                 setTimeout(() => {    
-                    // Elements that will be changed
+
                     alert("Pedido cadastrado com sucesso!");
                     navigate(-1);
                     handleResetCart();
@@ -102,14 +96,13 @@ export function Cart() {
                 if(error.response){
                     alert(error.response.data.message);
                 } else {
-                    alert("Não foi possível cadastrar");
+                    alert("Não foi possível cadastrar seu pedido!");
                 }
             });
 
         setLoading(false);
     }
 
-    // CreditCard Validations
     const [num, setNum] = useState('');
     const [cvc, setCvc] = useState('');
 
@@ -123,7 +116,7 @@ export function Cart() {
         setCvc(event.target.value.slice(0, limit));
     };
 
-    // Payment Buttons and Change Screens
+
     const [isPixVisible, setIsPixVisible] = useState(false);
     const [isCreditVisible, setIsCreditVisible] = useState(false);
     const [isCartVisible, setIsCartVisible] = useState(true);
@@ -148,7 +141,6 @@ export function Cart() {
         setPixActive(false);
     };
 
-    // Disable Buttons and Change Screens
     const [disabledButton, setDisabledButton] = useState(false);
 
     const disableButton = () => {
@@ -160,11 +152,11 @@ export function Cart() {
         setIsClockActive(true);
         setIsApprovedActive(false);
         setTimeout(() => {    
-            // Elements that will be changed
+
             setIsClockActive(false);
             setIsApprovedActive(true);
 
-            // Delay
+
         }, 4000);
     }
     
@@ -312,7 +304,7 @@ export function Cart() {
 
                                                 <div className="approved" id="approved">
                                                     <img src={checkCircle} alt="Imagem de pagamento aprovado" />
-                                                    <p>Oba! Pagamento aprovado! Em breve faremos a entrega!</p>
+                                                    <p>Oba! Pagamento aprovado! Em breve faremos sua entrega!</p>
                                                 </div>
                                             }
                                         </div>
