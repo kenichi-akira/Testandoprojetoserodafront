@@ -43,30 +43,35 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-    /* ==== Configs gerais do Card ==== */
     width: 100%;
     max-width: 53.0rem;
     max-height: 48rem;
     font-family: 'Roboto', sans-serif;
 
-    padding: 5.9rem clamp(3rem, 3rem + 5.5vw, 9.1rem) 4.8rem;
+    padding: 4rem clamp(2rem, 3rem + 2.5vw, 6rem);
     border: 1px solid ${({ theme }) => theme.COLORS.GRAY_200};
     border-radius: 0 0 0.8rem 0.8rem;
+    margin: 0 auto;
     
     /* ==== Tela do Cartão de Crédito ==== */
+    
+    .paymentCredit,
+    .paymentPix {
+        text-align: center;
+        margin: 0 auto; // Centraliza o conteúdo interno
+    }
+
     .validTo {
         display: flex;
         gap: 1.7rem;
-        margin: 3.7rem 0 3.7rem;
+        margin: 3.7rem 0;
+        justify-content: center; // Alinha os campos "Validade" e "CVC" horizontalmente
     }
 
-    .paymentCredit p {
-        margin-bottom: 0.8rem;
-    }
-
-    /* ==== Tela do QR Code ==== */
-    .paymentPix {
-        text-align: center;
+    .paymentPix img {
+        width: 100%;
+        max-width: 27rem;
+        margin: 2rem auto; // Centraliza o QR code
     }
 
     .qr {
