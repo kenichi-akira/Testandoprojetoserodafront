@@ -1,183 +1,306 @@
 import styled from "styled-components";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export const Container = styled.header`
-  width: 100%;
-  height: 10.4rem;
+    display: flex;
+    
+    width: 100%;
+    
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    
+    justify-content: center;
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_600};
 
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};
-`
+    -webkit-box-shadow: 0px 0px 10px 5px #193746; 
+    box-shadow: 0px 0px 10px 5px #193746;
+
+    @keyframes scale-up-center {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(1.2);
+        }
+    }
+
+    @keyframes rotate-center {
+    0% {
+        -webkit-transform: rotate(0);
+                transform: rotate(0);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }}
+    
+    @keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+    }
+    40% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }}
+`;
 
 export const Content = styled.div`
-  max-width: 136.8rem;
-  height: 10.4rem;
-  margin-inline: auto;
-  padding-inline: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  > button {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    white-space: nowrap;
+    
+    width: 121.2rem;
+    height: 10.4rem;
+    
+    padding: 0 4rem;
+    gap: 3.2rem;
 
-    background: none;
-    border: none;
-
-    transition: all 1s;
-
-    svg {
-      margin-top: .3rem;
-      color: white;
-      font-size: 2.2rem;
+    .nav-menu {
+        display: flex;
+        justify-content: space-between;
+        
+        width: 100%;
+        gap: 3.2rem;
     }
-  }
 
-  @media (min-width: 768px) {
-    padding-inline: 12.3rem;
+    .hamburger {
+        display: none;
+    }
 
-    > button {
-      display: none;
-    } 
-  }
-`
+    .bar {
+        display: block;
+        
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+        background-color: ${({ theme }) => theme.COLORS.BLUE};
+    }
 
-export const Nav = styled.div`
-  position: absolute;
-  top: 10.4rem;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 5;
-  height: 40rem;
+    @media only screen and (max-width: 768px) {
+        max-width: 768px;
 
-  background-color: ${({ theme }) => theme.COLORS.BACKGROUND_900};
-  padding-inline: 4rem;
-  padding-top: 5rem;
+        .nav-menu {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            
+            position: fixed;
+            left: -100%;
+            top: 10.4rem;
+            z-index: 9999;
+            
+            width: 100%;
+            height: 35rem;
+            gap: 2rem;
+            padding: 5rem 5rem 3rem;
+            border-radius: 0 0 2rem 2rem;
+            border: 1px solid ${({ theme }) => theme.COLORS.BLUE};
+            
+            transition: 0.3s;
+            
+            background-color: ${({ theme }) => theme.COLORS.BLUE_200};
+            box-shadow:
+                0 10px 27px rgba(0, 0, 0, 0.05);
+        }
 
-  opacity: ${({ isVisible }) => isVisible ? 1 : 0};
-  visibility: ${({ isVisible }) => isVisible ? 'visible' : 'hidden'};
-  transform: ${({ isVisible }) => isVisible ? 'translateY(0)' :'translateY(-20%)'};
+        .nav-menu.active {
+            left: 0;
+        }
 
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  gap: 3.2rem;
+        .nav-item {
+            margin: 2.5rem 0;
+        }
 
-  transition: all 0.4s;
+        .hamburger {
+            display: block;
+            cursor: pointer;
+        }
 
-  @media (min-width: 768px) {
-    position: relative;
-    top: 0;
-    padding: 0;
-    height: 0;
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
 
-    margin-left: 3.2rem;
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
 
-    flex-direction: row;
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+    }
+`;
+
+export const Logo = styled.div`
+    display: flex;
     align-items: center;
-    background: none;
+    color: ${({ theme }) => theme.COLORS.WHITE};
+    
+    h1 {
+        font-size: 2.51109rem;
+        animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+    }
+    
+    .logo img:hover {
+        -webkit-animation: rotate-center 0.6s ease-in-out both;
+        animation: rotate-center 0.6s ease-in-out both;
+    }
+    
+    a {
+        display: flex;
+        gap: 1.123rem;
 
-    opacity: 1;
-    visibility: visible;
-
-    transform: translateY(0);
-    transition: all 0s;
-  }
-`
-
-export const Logo = styled(Link)`
-  display: flex;
-  align-items: center;
-  gap: 1.1rem;
-
-  font-size: 2.4rem;
-  color: ${({ theme }) => theme.COLORS.WHITE};
-`
-
-export const Favorites = styled.button`
-  color: ${({ theme }) => theme.COLORS.GRAY_100};
-  background: none;
-  border: none;
-  font-size: 1.6rem;
-`
-export const NewDish = styled(Link)`
-  background-color: ${({ theme }) => theme.COLORS.RED};
-  color: ${({ theme }) => theme.COLORS.GRAY_100};
-  padding-inline: 1.2rem;
-  border-radius: 0.5rem;
-  height: 3rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
+        text-decoration: none;
+        color: inherit;
+    }
+`;
 
 export const Search = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
+    align-self: center;
 
-  background-color: ${({ theme}) => theme.COLORS.BACKGROUND_400};
-  border-radius: 0.5rem;
-  padding-right: 1.6rem;
-  position: relative;
-
-  > svg {
-    left: 1.6rem;
-    position: absolute;
-  }
-
-  > input {
     width: 100%;
-    height: 4.8rem;
-    
-    font-size: 1.6rem;
+    border-radius: 5px;
 
-    padding-left: 4.8rem;
-    border: none;
-    background: transparent;
-    color: ${({ theme }) => theme.COLORS.WHITE};
+    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
 
-    &::placeholder {
-      color: ${({ theme }) => theme.COLORS.GRAY_500};
+    input {
+        width: 100%;
+        height: 4.8rem;
+
+        padding: 1.6rem;
+        border: 0;
+
+        color: ${({ theme }) => theme.COLORS.GRAY_200};
+        background: transparent;
+
+        &:placeholder {
+            color: ${({ theme }) => theme.COLORS.GRAY_200};
+        }
     }
-  }
 
-  @media (min-width: 768px) {
-    flex: 1;
-  }
-`
+    label {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-left: 1.6rem;
+    } 
+
+    svg {
+        color: ${({ theme }) => theme.COLORS.GRAY_200};
+    }
+`;
 
 export const Button = styled.button`
-  width: 100%;
-  height: 5.6rem;
-  border: none;
-  border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 100%;
+    max-width: 216px;
+    height: 5.6rem;
+    
+    border: none;
+    border-radius: 0.5rem;
+    
+    gap: 1.1rem;
+    
+    font-size: 1.4rem;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.1rem;
+    background-color: ${({ theme }) => theme.COLORS.RED};
+    color: ${({ theme }) => theme.COLORS.WHITE};
 
-  background-color: ${({ theme }) => theme.COLORS.RED};
-  color: ${({ theme }) => theme.COLORS.WHITE};
-  font-size: 1.4rem;
+    padding: 0 3rem;
 
-  &:disabled {
-    opacity: 0.5;
-  }
-
-  @media (min-width: 768px) {
-    width: 21.6rem;
-  }
-`
+    @media (min-width: 768px) {
+        max-width: 21.6rem;
+    }
+`;
 
 export const Logout = styled(Link)`
-  > svg {
-    font-size: 2.2rem;
+    display: flex;
+    align-self: center;
+    
+    border: none;
+    background: none;
+    
+    > svg {
+        color: ${({ theme }) => theme.COLORS.WHITE};
+        font-size: 3.2rem;
+    }
+
+    > svg:hover {
+        animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    }
+`;
+
+export const Profile = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    height: 5.6rem;
+    border: none;
+    background: none;
+    
+    cursor: pointer;
+
+    > svg {
+        color: ${({ theme }) => theme.COLORS.WHITE};
+        font-size: 3.2rem;
+    }
+    
+    > svg:hover {
+        animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    }
+
+    .user-menu {
+        display: none;
+    }
+    
+    .user-menu.active {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+
+        position: absolute;
+        margin-top: 23rem;
+        gap: 1rem;
+        padding: 1rem;
+
+        z-index: 9999;
+        
+        border-radius: 1rem;
+        border: 1px solid ${({ theme }) => theme.COLORS.RED};
+        
+        transition: 0.3s;
+        
+        background-color: ${({ theme }) => theme.COLORS.RED_200};
+        box-shadow:
+            0 10px 27px rgba(0, 0, 0, 0.05);
+    }
+`;
+
+export const ButtonMenu = styled.button`
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    height: 4rem;
+    padding: 0 1.6rem;
+    gap: 1rem;
+    
+    border: none;
+    border-radius: 0.5rem;
+    
+    font-size: 1.4rem;
+
     color: ${({ theme }) => theme.COLORS.WHITE};
-  } 
-`
+    background-color: ${({ theme }) => theme.COLORS.RED_200};
+`;
