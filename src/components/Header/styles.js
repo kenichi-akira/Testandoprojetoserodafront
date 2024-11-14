@@ -301,6 +301,6 @@ export const ButtonMenu = styled.button`
     
     font-size: 1.4rem;
 
-    color: ${({ theme }) => theme.COLORS.WHITE};
+    color: ${({ theme }) => theme.COLORS.RED};
     background-color: ${({ theme }) => theme.COLORS.RED_200};
 `;
